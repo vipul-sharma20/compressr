@@ -1,8 +1,8 @@
 COMPRESSR
 =========
 
-A text compression script to reduce text length. A handy tool to use while
-posting text content with some character limit as a constraint for eg: Twitter, SMS etc.
+A text compression script to reduce text length, for those who are rebellious
+enough to challenge the character limit. A handy tool to use while posting text content on platforms with some character limit as a constraint for eg: Twitter, SMS etc.
 
 This is still under developement. Please take some time to look at the code; I
 would love to hear your feedback:
