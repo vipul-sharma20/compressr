@@ -5,11 +5,13 @@ from nltk import tokenize
 from nltk.tokenize import word_tokenize
 from constants import REDUCED, SUFFIX_FLAG, PREFIX_FLAG
 
+
 def getWords(sentence):
     """
     Extracts words/tokens from a sentence
     :param sentence: (str) sentence
-    :returns: list of tokens
+    :returns words_dict: (dict) dictionary of words
+    :returns words: (list) word list
     """
     words = word_tokenize(sentence)
     words_dict = dict()

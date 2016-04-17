@@ -8,8 +8,9 @@ from constants import REDUCED, SUFFIX_FLAG, PREFIX_FLAG
 def reduce_suffix(words_dict, words):
     """
     Reduce suffix from words
+    :param words_dict: (dict) key-value pair of words from text
     :param words (list) word list
-    :returns: reduced word list
+    :returns: reduced words dictionary
     """
     for word in words:
         if not words_dict[word][SUFFIX_FLAG]:
@@ -36,8 +37,9 @@ def reduce_suffix(words_dict, words):
 def reduce_prefix(words_dict, words):
     """
     Redue prefix from words
-    :params: (list) word list
-    :returns: reduced word list
+    :param words_dict: (dict) key-value pair of words from text
+    :param words: (list) word list
+    :returns: reduced words dictionary
     """
     for word in words:
         if not words_dict[word][PREFIX_FLAG]:
@@ -62,6 +64,9 @@ def reduce_prefix(words_dict, words):
 
 
 def get_text():
+    """
+    Driver function; Execution starts here
+    """
     text = raw_input('')
     words_dict, words = util.getWords(text)
     words_dict = reduce_suffix(words_dict, words)
