@@ -9,7 +9,8 @@ def reduce_suffix(words_dict, words, limit):
     """
     Reduce suffix from words
     :param words_dict: (dict) key-value pair of words from text
-    :param words (list) word list
+    :param words: (list) word list
+    :param limit: (int) character limit
     :returns: reduced words dictionary
     """
     text_length = words_dict[LENGTH]
@@ -39,6 +40,7 @@ def reduce_prefix(words_dict, words, limit):
     Redue prefix from words
     :param words_dict: (dict) key-value pair of words from text
     :param words: (list) word list
+    :param limit: (int) character limit
     :returns: reduced words dictionary
     """
     text_length = words_dict[LENGTH]
