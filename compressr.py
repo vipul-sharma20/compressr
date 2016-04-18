@@ -2,7 +2,7 @@
 
 import util
 from slang import *
-from constants import REDUCED, SUFFIX_FLAG, PREFIX_FLAG, LENGTH
+from constants import REDUCED, SUFFIX_FLAG, PREFIX_FLAG, LENGTH, REDUCED_LENGTH
 
 
 def reduce_suffix(words_dict, words, limit):
@@ -13,9 +13,8 @@ def reduce_suffix(words_dict, words, limit):
     :param limit: (int) character limit
     :returns: reduced words dictionary
     """
-    text_length = words_dict[LENGTH]
     for word in words:
-        if text_length <= limit:
+        if words_dict[REDUCED_LENGTH] <= limit:
             return words_dict
         if not words_dict[word][SUFFIX_FLAG]:
             word_length = len(word)
@@ -25,11 +24,11 @@ def reduce_suffix(words_dict, words, limit):
                 if suffix_3 in suffix_slang_3:
                     words_dict[word][REDUCED] = word[:-3] + \
                             suffix_slang_3[suffix_3]
-                    text_length -= len(suffix_slang_3[suffix_3])
+                    words_dict[REDUCED_LENGTH] -= len(suffix_slang_3[suffix_3])
                 if suffix_4 in suffix_slang_4:
                     words_dict[word][REDUCED] = word[:-4] + \
                             suffix_slang_4[suffix_4]
-                    text_length -= len(suffix_slang_4[suffix_4])
+                    words_dict[REDUCED_LENGTH] -= len(suffix_slang_4[suffix_4])
 
         words_dict[word][SUFFIX_FLAG] = True
     return words_dict
@@ -45,7 +44,7 @@ def reduce_prefix(words_dict, words, limit):
     """
     text_length = words_dict[LENGTH]
     for word in words:
-        if text_length <= limit:
+        if words_dict[REDUCED_LENGTH] <= limit:
             return words_dict
         if not words_dict[word][PREFIX_FLAG]:
             word_length = len(word)
@@ -55,11 +54,11 @@ def reduce_prefix(words_dict, words, limit):
                 if prefix_3 in prefix_slang_3:
                     words_dict[word][REDUCED] = prefix_slang_3[prefix_3] + \
                             word[3:]
-                    text_length -= len(prefix_slang_3[prefix_3])
+                    words_dict[REDUCED_LENGTH] -= len(prefix_slang_3[prefix_3])
                 if prefix_4 in prefix_slang_4:
                     words_dict[word][REDUCED] = prefix_slang_4[prefix_4] + \
                             word[4:]
-                    text_length -= len(prefix_slang_4[prefix_4])
+                    words_dict[REDUCED_LENGTH] -= len(prefix_slang_4[prefix_4])
 
         words_dict[word][PREFIX_FLAG] = True
     return words_dict
@@ -69,8 +68,8 @@ def get_text():
     """
     Driver function; Execution starts here
     """
-    text = raw_input('')
-    limit = input()
+    text = raw_input('TEXT: ')
+    limit = input('LIMIT: ')
     words_dict, words = util.getWords(text)
     words_sorted = sorted(words)
     words_dict = reduce_suffix(words_dict, words_sorted, limit)
