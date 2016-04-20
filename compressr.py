@@ -2,7 +2,8 @@
 
 import util
 from slang import *
-from constants import REDUCED, SUFFIX_FLAG, PREFIX_FLAG, LENGTH, REDUCED_LENGTH
+from constants import REDUCED, SUFFIX_FLAG, PREFIX_FLAG, VOWEL_FLAG, LENGTH, \
+        REDUCED_LENGTH, VOWELS
 
 
 def reduce_suffix(words_dict, words, limit):
@@ -42,7 +43,6 @@ def reduce_prefix(words_dict, words, limit):
     :param limit: (int) character limit
     :returns: reduced words dictionary
     """
-    text_length = words_dict[LENGTH]
     for word in words:
         if words_dict[REDUCED_LENGTH] <= limit:
             return words_dict
@@ -64,6 +64,24 @@ def reduce_prefix(words_dict, words, limit):
     return words_dict
 
 
+def reduce_vowels(words_dict, words, limit):
+    """
+    Reduce vowels from words
+    :param words_dict: (dict) key-value pair of words from text
+    :param words: (list) word list
+    :param limit: (int) character limit
+    :returns: reduced words dictionary
+    """
+    for word in words:
+        if not words_dict[word][VOWEL_FLAG] and len(word) > 3:
+            for v in VOWELS:
+                words_dict[word][REDUCED] = words_dict[word][REDUCED].replace(v, '')
+                if words_dict[REDUCED_LENGTH] <= limit:
+                    return words_dict
+        words_dict[word][VOWEL_FLAG] = True
+    return words_dict
+
+
 def get_text():
     """
     Driver function; Execution starts here
@@ -74,6 +92,7 @@ def get_text():
     words_sorted = sorted(words)
     words_dict = reduce_suffix(words_dict, words_sorted, limit)
     words_dict = reduce_prefix(words_dict, words_sorted, limit)
+    words_dict = reduce_vowels(words_dict, words_sorted, limit)
     for word in words:
         print words_dict[word][REDUCED],
 

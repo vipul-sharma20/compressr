@@ -3,7 +3,8 @@ Utility functions for filtering content
 """
 from nltk import tokenize
 from nltk.tokenize import word_tokenize
-from constants import REDUCED, SUFFIX_FLAG, PREFIX_FLAG, LENGTH, REDUCED_LENGTH
+from constants import REDUCED, SUFFIX_FLAG, PREFIX_FLAG, LENGTH, \
+        REDUCED_LENGTH, VOWEL_FLAG
 
 
 def getWords(sentence):
@@ -21,5 +22,6 @@ def getWords(sentence):
         words_dict[word] = {}
         words_dict[word][SUFFIX_FLAG] = False
         words_dict[word][PREFIX_FLAG] = False
+        words_dict[word][VOWEL_FLAG] = False
         words_dict[word][REDUCED] = word
     return words_dict, words
