@@ -10,6 +10,11 @@ would love to hear your feedback:
 * `git clone git@github.com:vipul-sharma20/compressr.git`
 * `cd compressr`
 * `pip install -r requirements.txt`
+* `python compressr.py`
+
+Example:
+Original text: you should try this #code it is awesome https://github.com/vipul-sharma20/compressr
+Reduced text: u shld try dis #code it is awsme https://github.com/vipul-sharma20/compressr
 
 LICENSE
 =======
