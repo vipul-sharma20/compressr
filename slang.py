@@ -13,6 +13,11 @@ suffix_slang_4 = {
 general_slang = {
         'you': 'u',
         'for': '4',
+        'thanks': 'thnx',
+        'are': 'r',
+        'they': 'dey',
+        'this': 'dis',
+        'that': 'dat',
         }
 
 prefix_slang_3 = {

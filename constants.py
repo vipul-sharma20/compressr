@@ -9,3 +9,8 @@ VOWEL_FLAG = 'vowel_flag'
 LENGTH = 'length'
 REDUCED_LENGTH = 'reduced_length'
 VOWELS = ['a', 'e', 'i', 'o', 'u']
+
+ITEMTYPE = 'itemtype'
+HASHTAG = 'hashtag'
+URL = 'url'
+DEFAULT = 'default'
