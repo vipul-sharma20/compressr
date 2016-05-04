@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import util
+import bitly_api
 from slang import *
 from constants import REDUCED, SUFFIX_FLAG, PREFIX_FLAG, VOWEL_FLAG, LENGTH, \
-        REDUCED_LENGTH, VOWELS, ITEMTYPE, DEFAULT
+        REDUCED_LENGTH, VOWELS, ITEMTYPE, DEFAULT, ACCESS_TOKEN, URL
 
 
 def reduce_suffix(words_dict, words, limit):
@@ -36,6 +37,12 @@ def reduce_suffix(words_dict, words, limit):
                     words_dict[REDUCED_LENGTH] -= len(suffix_slang_4[suffix_4])
 
                     words_dict[word][SUFFIX_FLAG] = True
+        else:
+            if words_dict[word][ITEMTYPE] == URL:
+                url = shorten_url(word)
+                words_dict[word][REDUCED] = url
+                words_dict[REDUCED_LENGTH] -= (len(word)-len(url))
+
     return words_dict
 
 
@@ -67,6 +74,12 @@ def reduce_prefix(words_dict, words, limit):
                     words_dict[REDUCED_LENGTH] -= len(prefix_slang_4[prefix_4])
 
                     words_dict[word][PREFIX_FLAG] = True
+        else:
+            if words_dict[word][ITEMTYPE] == URL:
+                url = shorten_url(word)
+                words_dict[word][REDUCED] = url
+                words_dict[REDUCED_LENGTH] -= (len(word)-len(url))
+
     return words_dict
 
 
@@ -113,6 +126,16 @@ def reduce_general_slang(words_dict, words, limit):
             words_dict[word][SUFFIX_FLAG] = True
             words_dict[word][VOWEL_FLAG] = True
     return words_dict
+
+
+def shorten_url(url):
+    """
+    Shorten URLs using Bitly
+    :param url: (str) URL
+    :returns: shortened URL
+    """
+    bitly_con = bitly_api.Connection(access_token=ACCESS_TOKEN)
+    return bitly_con.shorten(url)[URL]
 
 
 def get_text():
