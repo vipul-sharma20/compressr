@@ -14,3 +14,6 @@ ITEMTYPE = 'itemtype'
 HASHTAG = 'hashtag'
 URL = 'url'
 DEFAULT = 'default'
+
+# Bitly access token
+ACCESS_TOKEN = '3a12c18da7e4343d8bbd79b75774ba817804180f'
