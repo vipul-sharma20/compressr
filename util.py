@@ -42,4 +42,3 @@ def check_itemtype(word):
         return URL
     else:
         return DEFAULT
-
