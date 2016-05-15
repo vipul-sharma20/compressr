@@ -92,7 +92,8 @@ def reduce_vowels(words_dict, words, limit):
     :returns: reduced words dictionary
     """
     for word in words:
-        if words_dict[word][ITEMTYPE] == DEFAULT and len(word) > 3:
+        if words_dict[word][ITEMTYPE] == DEFAULT and len(word) > 3 and \
+                words_dict[REDUCED_LENGTH] > limit and not words_dict[word][VOWEL_FLAG]:
             temp_reduced = words_dict[word][REDUCED][1:-1]
             for v in VOWELS:
 
